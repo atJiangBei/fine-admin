@@ -1,7 +1,9 @@
+import { RouteRecordRaw } from 'vue-router';
 import { defineStore } from 'pinia';
 import { store } from '@/store';
 import homes from '@/router/modules/home';
 import router from '@/router';
+import { toRouteType } from '@/router/types';
 
 export const useTagsStore = defineStore({
   id: 'tags',
@@ -11,8 +13,7 @@ export const useTagsStore = defineStore({
     cachePageList: [],
   }),
   actions: {
-    changeTag(route: any) {
-      console.log(route);
+    changeTag(route: toRouteType) {
       const index = [...this.staticTagList, ...this.tagList].findIndex(
         (tag: any) => tag.path === route.path
       );
@@ -23,18 +24,10 @@ export const useTagsStore = defineStore({
         }
       }
     },
-    deleteTag(route: any) {
-      console.log(route);
-      const index = this.tagList.findIndex(
-        (tag: any) => tag.path === route.path
-      );
-      if (index > -1) {
-        this.tagList.splice(index, 1);
-        if (!this.tagList.length) {
-          router.push(this.staticTagList[0].path);
-        } else {
-          router.push(this.tagList[this.tagList.length - 1].path);
-        }
+    deleteTag(index: number, route: RouteRecordRaw, nextPath?: string) {
+      this.tagList.splice(index, 1);
+      if (nextPath) {
+        router.push(nextPath);
       }
       const cacheIndex = this.cachePageList.findIndex(
         (name: string) => name === route.name

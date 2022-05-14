@@ -4,7 +4,7 @@ export default [
     path: '/home',
     name: 'home',
     meta: {
-      title: 'Home',
+      title: 'menus.home',
     },
     component: () =>
       import(/* webpackChunkName: "about" */ '@/views/home/index.vue'),

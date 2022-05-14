@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import router from '@/router';
+import { removeToken } from '@/utils/auth';
+
+const logout = () => {
+  removeToken();
+  router.push('/login');
+};
+</script>
 
 <template>
   <el-dropdown trigger="click">
@@ -8,9 +16,7 @@
     </div>
     <template #dropdown>
       <el-dropdown-menu class="logout">
-        <el-dropdown-item>
-          <i class="ri-logout-circle-r-line"></i>退出系统</el-dropdown-item
-        >
+        <el-dropdown-item @click="logout"> 退出系统 </el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>

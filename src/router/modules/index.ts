@@ -5,6 +5,7 @@ export default [
   {
     path: '/',
     name: 'layout',
+    redirect: '/home',
     component: Layout,
     children: [...home],
   },

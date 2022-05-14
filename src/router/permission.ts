@@ -1,8 +1,9 @@
 import { Router, RouteLocationNormalized } from 'vue-router';
 import { toRouteType } from './types';
 import { getToken } from '@/utils/auth';
-import { initRouter } from './utils';
+import { initRouter, findRouteByPath } from './utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';
+import { useTagsStoreHook } from '@/store/modules/tags';
 
 const whiteList = ['/login'];
 export default function permission(router: Router) {
@@ -14,6 +15,10 @@ export default function permission(router: Router) {
     if (token) {
       if (!usePermissionStoreHook().menusTree.length) {
         initRouter(router).then(() => {
+          const route = findRouteByPath(router.options.routes, to.path);
+          if (route) {
+            useTagsStoreHook().changeTag(route);
+          }
           next(to.path);
         });
       } else {

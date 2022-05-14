@@ -7,6 +7,7 @@ const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  publicPath: './',
   chainWebpack(config) {
     config.module.rule('svg').exclude.add(resolve('src/svgs')).end();
     config.module

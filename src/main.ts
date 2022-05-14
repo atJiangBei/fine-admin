@@ -8,10 +8,13 @@ import './style';
 import '@/svgs/loadSvg';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import CommonComponents from './components';
+import usePlugins from '@/plugins';
 
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
+
+usePlugins(app);
 
 app.use(CommonComponents).use(ElementPlus).use(store).use(router).mount('#app');

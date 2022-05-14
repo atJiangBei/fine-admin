@@ -13,7 +13,6 @@ import router from '@/router';
 import { childrenType } from '../../types';
 
 const instance = getCurrentInstance().appContext.app.config.globalProperties;
-
 const props = defineProps({
   item: {
     type: Object as PropType<childrenType>,
@@ -103,7 +102,7 @@ function resolvePath(routePath) {
     >
       <template #title>
         <div :style="getDivStyle">
-          <span>{{ onlyOneChild.meta.title }}</span>
+          <span>{{ $t(onlyOneChild.meta.title) }}</span>
         </div>
       </template>
     </el-menu-item>
@@ -116,7 +115,7 @@ function resolvePath(routePath) {
     popper-append-to-body
   >
     <template #title>
-      <span>{{ props.item.meta.title }}</span>
+      <span>{{ $t(props.item.meta.title) }}</span>
     </template>
     <sidebar-item
       v-for="child in props.item.children"

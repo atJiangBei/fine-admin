@@ -48,13 +48,13 @@ export function initRouter(router: Router) {
         addRoutes.forEach((route) => {
           if (routes?.findIndex((value) => value.path === route.path) === -1) {
             routes.push(route);
-            if (!router.hasRoute(route.name || '')) {
+            if (!router.hasRoute(route.name || String(Math.random()))) {
               router.addRoute(route);
             }
           }
         });
         usePermissionStoreHook().asyncActionRoutes(data);
-        console.log(addRoutes);
+        //console.log(addRoutes);
       }
       resolve(undefined);
 
@@ -94,3 +94,21 @@ export function removeButtonPermissions(arrRoutes: Array<any>) {
 
   return arrRoutes;
 }
+
+export const findRouteByPath = (routes: RouteRecordRaw[], path: string) => {
+  let resultRoute = null;
+  const recursion = (routes: any) => {
+    for (let i = 0; i < routes.length; i++) {
+      const route = routes[i];
+      if (route.path === path) {
+        resultRoute = route;
+        return;
+      }
+      if (route.children && route.children.length) {
+        recursion(route.children);
+      }
+    }
+  };
+  recursion(routes);
+  return resultRoute;
+};
