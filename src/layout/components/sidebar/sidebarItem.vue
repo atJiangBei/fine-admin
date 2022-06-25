@@ -15,7 +15,7 @@ import { childrenType } from '../../types';
 //const instance = getCurrentInstance().appContext.app.config.globalProperties;
 const props = defineProps({
   item: {
-    type: Object as PropType<childrenType>,
+    type: Object,
   },
   isNest: {
     type: Boolean,
