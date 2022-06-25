@@ -1,5 +1,6 @@
 export default {
   home: 'Home',
+  table: 'Table',
   menus: 'MultiLevel Menu',
   menu1: 'Menu1',
   'menu1-1': 'Menu1-1',

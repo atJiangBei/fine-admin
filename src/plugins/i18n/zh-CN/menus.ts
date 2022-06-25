@@ -1,5 +1,6 @@
 export default {
   home: '首页',
+  table: '表格',
   menus: '多级菜单',
   menu1: '菜单1',
   'menu1-1': '菜单1-1',

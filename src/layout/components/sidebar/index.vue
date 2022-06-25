@@ -7,13 +7,14 @@ import { usePermissionStoreHook } from '@/store/modules/permission';
 import { useTagsStoreHook } from '@/store/modules/tags';
 import { useRoute } from 'vue-router';
 import { findRouteByPath } from '@/router/utils';
+import router from '@/router';
 const props = defineProps({});
 const activeIndex = computed(() => useRoute().path);
 
 const routeList = usePermissionStoreHook().wholeMenus;
 
 const onSelect = (path: string) => {
-  //console.log(path);
+  router.push({ path: path });
   const route = findRouteByPath(routeList, path);
   useTagsStoreHook().changeTag(route);
 };
@@ -21,7 +22,6 @@ const onSelect = (path: string) => {
 <template>
   <div class="sidebar-container">
     <el-menu
-      router
       :ellipsis="false"
       :default-active="activeIndex"
       mode="horizontal"

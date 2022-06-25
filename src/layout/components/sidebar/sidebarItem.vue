@@ -12,7 +12,7 @@ import {
 import router from '@/router';
 import { childrenType } from '../../types';
 
-const instance = getCurrentInstance().appContext.app.config.globalProperties;
+//const instance = getCurrentInstance().appContext.app.config.globalProperties;
 const props = defineProps({
   item: {
     type: Object as PropType<childrenType>,
@@ -54,26 +54,25 @@ function hasOneShowingChild(
     onlyOneChild.value = item;
     return true;
   });
-
   if (showingChildren.length === 1) {
     return true;
   }
 
   if (showingChildren.length === 0) {
-    onlyOneChild.value = { ...parent, path: '', noShowingChildren: true };
+    onlyOneChild.value = { ...parent, noShowingChildren: true };
     return true;
   }
   return false;
 }
 
-function resolvePath(routePath) {
+function resolvePath(routePath: string) {
   const httpReg = /^http(s?):\/\//;
   if (httpReg.test(routePath)) {
     return props.basePath + '/' + routePath;
   } else {
     let newPath = '';
     if (!props.basePath) {
-      //  console.log(1, routePath, props.basePath);
+      //console.log(1, routePath, props.basePath);
       newPath = routePath;
     } else if (routePath.indexOf(props.basePath) === 0) {
       //console.log(2, routePath, props.basePath);
@@ -102,7 +101,7 @@ function resolvePath(routePath) {
     >
       <template #title>
         <div :style="getDivStyle">
-          <span>{{ $t(onlyOneChild.meta.title) }}</span>
+          <span>{{ onlyOneChild.meta && $t(onlyOneChild.meta.title) }}</span>
         </div>
       </template>
     </el-menu-item>
@@ -115,7 +114,7 @@ function resolvePath(routePath) {
     popper-append-to-body
   >
     <template #title>
-      <span>{{ $t(props.item.meta.title) }}</span>
+      <span>{{ props.item.meta && $t(props.item.meta.title) }}</span>
     </template>
     <sidebar-item
       v-for="child in props.item.children"

@@ -19,7 +19,7 @@ export const useTagsStore = defineStore({
       );
       if (index === -1) {
         this.tagList.push(route);
-        if (route.name && route.meta.keepAlive === true) {
+        if (route.name && route.meta && route.meta.keepAlive === true) {
           this.cachePageList.push(route.name);
         }
       }

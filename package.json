@@ -11,6 +11,7 @@
   },
   "author": "atJiangBei",
   "dependencies": {
+    "ant-design-vue": "^3.2.5",
     "core-js": "^3.8.3",
     "element-plus": "^2.1.11",
     "gh-pages": "^4.0.0",

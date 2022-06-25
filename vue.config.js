@@ -8,6 +8,9 @@ module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
   publicPath: './',
+  devServer: {
+    port: 8182,
+  },
   chainWebpack(config) {
     config.module.rule('svg').exclude.add(resolve('src/svgs')).end();
     config.module

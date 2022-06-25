@@ -56,12 +56,11 @@ export function initRouter(router: Router) {
         usePermissionStoreHook().asyncActionRoutes(data);
         //console.log(addRoutes);
       }
-      resolve(undefined);
-
       router.addRoute({
         path: '/:pathMatch(.*)',
         redirect: '/error/404',
       });
+      resolve(undefined);
     });
   });
 }

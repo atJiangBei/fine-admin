@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { store } from '@/store';
 import staticRoutes from '@/router/modules';
-import { cloneDeep } from 'lodash-es';
 
 export const usePermissionStore = defineStore({
   id: 'permission',

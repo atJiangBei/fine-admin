@@ -8,7 +8,7 @@ export default [
   },
   {
     path: '/error',
-    name: 'layout',
+    name: 'error',
     component: Layout,
     children: [
       {
