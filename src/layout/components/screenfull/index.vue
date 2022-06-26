@@ -32,8 +32,8 @@ const { isFullscreen, toggle } = useFullscreen();
     background-color: rgba(0, 0, 0, 0.2);
   }
   .svg-icon.toggle-icon {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: var(--admin-basic-color);
   }
 }

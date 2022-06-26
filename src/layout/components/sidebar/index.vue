@@ -1,22 +1,26 @@
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { RouteRecordRaw } from 'vue-router';
 import sidebarItem from './sidebarItem.vue';
-
 import { usePermissionStoreHook } from '@/store/modules/permission';
 import { useTagsStoreHook } from '@/store/modules/tags';
-import { useRoute } from 'vue-router';
 import { findRouteByPath } from '@/router/utils';
+import { useRoute } from 'vue-router';
 import router from '@/router';
-const props = defineProps({});
-const activeIndex = computed(() => useRoute().path);
+
+const route = useRoute();
+
+const activeIndex = computed(() => {
+  return route.path;
+});
 
 const routeList = usePermissionStoreHook().wholeMenus;
 
 const onSelect = (path: string) => {
-  router.push({ path: path });
+  //console.log(path);
   const route = findRouteByPath(routeList, path);
   useTagsStoreHook().changeTag(route);
+  router.push(path);
 };
 </script>
 <template>
@@ -28,6 +32,7 @@ const onSelect = (path: string) => {
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#31c29b"
+      :router="false"
       @select="onSelect"
     >
       <sidebar-item

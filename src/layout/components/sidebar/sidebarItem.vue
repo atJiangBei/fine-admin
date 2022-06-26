@@ -15,7 +15,8 @@ import { childrenType } from '../../types';
 //const instance = getCurrentInstance().appContext.app.config.globalProperties;
 const props = defineProps({
   item: {
-    type: Object,
+    type: Object as PropType<childrenType>,
+    required: true,
   },
   isNest: {
     type: Boolean,
@@ -44,7 +45,7 @@ const getDivStyle = computed((): CSSProperties => {
   };
 });
 
-const onlyOneChild: childrenType = ref(null);
+const onlyOneChild = ref<childrenType>();
 
 function hasOneShowingChild(
   children: childrenType[] = [],

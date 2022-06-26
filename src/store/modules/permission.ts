@@ -14,11 +14,10 @@ export const usePermissionStore = defineStore({
     asyncActionRoutes(routes: any) {
       this.wholeMenus = this.wholeMenus.concat(routes);
       this.menusTree = [...this.wholeMenus] as any;
-      this.initCachePageList(this.wholeMenus);
+      //this.initCachePageList(this.wholeMenus);
     },
     initCachePageList(routes: any) {
       addCachePage(this.cachePageList, routes);
-      console.log(this.cachePageList);
     },
   },
 });

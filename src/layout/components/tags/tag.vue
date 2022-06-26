@@ -45,6 +45,7 @@ export default defineComponent({
   background: #fff;
   padding: 0 8px;
   font-size: 12px;
+  transition: all 0.3s;
   .nav-tag-closable {
     display: inline-block;
     height: 16px;

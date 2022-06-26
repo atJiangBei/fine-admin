@@ -26,7 +26,7 @@ const logout = () => {
   box-sizing: border-box;
   padding: 8px 10px;
   height: 48px;
-  min-width: 105px;
+  max-width: 120px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -37,7 +37,8 @@ const logout = () => {
     background-color: rgba(0, 0, 0, 0.2);
   }
   img {
-    height: 32px;
+    height: 28px;
+    margin-right: 5px;
   }
 }
 </style>
