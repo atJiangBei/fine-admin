@@ -1,6 +1,8 @@
 export default {
   home: 'Home',
+  template: 'Template',
   table: 'Table',
+  swiper: 'Swiper',
   menus: 'MultiLevel Menu',
   menu1: 'Menu1',
   'menu1-1': 'Menu1-1',

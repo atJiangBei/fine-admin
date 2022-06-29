@@ -33,7 +33,7 @@ const cachePageList = useTagsStoreHook().cachePageList;
   padding-top: 48px;
 }
 .app-main-content {
-  padding: 20px;
+  padding: 8px;
 }
 .fade-slide-leave-active,
 .fade-slide-enter-active {

@@ -29,7 +29,7 @@ const onSelect = (path: string) => {
       :ellipsis="false"
       :default-active="activeIndex"
       mode="horizontal"
-      background-color="#545c64"
+      background-color="#001529"
       text-color="#fff"
       active-text-color="#31c29b"
       :router="false"
@@ -46,9 +46,7 @@ const onSelect = (path: string) => {
 </template>
 <style lang="less">
 .sidebar-container {
-  .el-menu {
-    --el-menu-item-height: 42px;
-  }
+  flex: 1;
   .el-menu--horizontal {
     border-bottom: 0;
   }

@@ -1,6 +1,8 @@
 export default {
   home: '首页',
+  template: '组件',
   table: '表格',
+  swiper: '轮播',
   menus: '多级菜单',
   menu1: '菜单1',
   'menu1-1': '菜单1-1',

@@ -1,61 +1,56 @@
 <template>
   <div>
-    <div style="margin: 200px 0 0 100px">
-      <el-popover
-        placement="top-start"
-        title="Title"
-        :width="200"
-        trigger="hover"
-      >
-        <template #reference>
-          <el-button>Hover to activate</el-button>
-        </template>
-        <div>
-          <p>this is content, this is content, this is content</p>
-          <el-popover
-            placement="top-start"
-            title="Title"
-            :width="200"
-            trigger="hover"
-          >
-            <template #reference>
-              <el-button>Hover to activate</el-button>
-            </template>
-            <div>
-              第二层
-              <el-popover
-                placement="top-start"
-                title="Title"
-                :width="200"
-                trigger="hover"
-              >
-                <template #reference>
-                  <el-button>Hover to activate</el-button>
-                </template>
-                <div>第三层</div>
-              </el-popover>
-            </div>
-          </el-popover>
-        </div>
-      </el-popover>
-    </div>
-    <div style="margin: 20px 0 0 100px; height: 1200px">
-      <a-popover title="Title">
-        <template #content>
-          <p>第二层</p>
-          <a-popover title="Title">
-            <template #content>
-              <p>Content</p>
-              <p>Content</p>
-            </template>
-            <a-button type="primary">Hover me2</a-button>
-          </a-popover>
-        </template>
-        <a-button type="primary">Hover me1</a-button>
-      </a-popover>
-    </div>
+    <div ref="map" style="height: 540px"></div>
   </div>
 </template>
-<script>
-export default {};
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
+import * as Echarts from 'echarts';
+const option = {
+  legend: {
+    top: 'bottom',
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      mark: { show: true },
+      dataView: { show: true, readOnly: false },
+      restore: { show: true },
+      saveAsImage: { show: true },
+    },
+  },
+  series: [
+    {
+      name: 'Nightingale Chart',
+      type: 'pie',
+      radius: [50, 250],
+      center: ['50%', '50%'],
+      roseType: 'area',
+      itemStyle: {
+        borderRadius: 8,
+      },
+      data: [
+        { value: 40, name: 'rose 1' },
+        { value: 38, name: 'rose 2' },
+        { value: 32, name: 'rose 3' },
+        { value: 30, name: 'rose 4' },
+        { value: 28, name: 'rose 5' },
+        { value: 26, name: 'rose 6' },
+        { value: 22, name: 'rose 7' },
+        { value: 18, name: 'rose 8' },
+      ],
+    },
+  ],
+};
+export default defineComponent({
+  setup() {
+    const map = ref();
+    onMounted(() => {
+      const echartsMap = Echarts.init(map.value);
+      echartsMap.setOption(option);
+      console.log(Echarts);
+    });
+    return { map };
+  },
+});
 </script>

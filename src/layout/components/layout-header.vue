@@ -29,7 +29,7 @@ import User from './user/index.vue';
   transition: width 0.28s;
   width: 100%;
   transition: none !important;
-  background-color: #545c64;
+  background-color: #001529;
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
   .horizontal-header {
     display: flex;

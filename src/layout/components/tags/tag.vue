@@ -46,6 +46,10 @@ export default defineComponent({
   padding: 0 8px;
   font-size: 12px;
   transition: all 0.3s;
+  &:hover {
+    border-color: var(--admin-basic-color);
+    color: var(--admin-basic-color);
+  }
   .nav-tag-closable {
     display: inline-block;
     height: 16px;
@@ -60,7 +64,7 @@ export default defineComponent({
       transform: rotate(45deg);
     }
     &:hover {
-      background-color: #b4bccc;
+      background-color: var(--admin-basic-color);
       color: #fff;
     }
   }
@@ -69,5 +73,14 @@ export default defineComponent({
   background-color: var(--admin-basic-color);
   border-color: var(--admin-basic-color);
   color: #fff;
+  &:hover {
+    color: #fff;
+  }
+  .nav-tag-closable {
+    &:hover {
+      background-color: #b4bccc;
+      color: #fff;
+    }
+  }
 }
 </style>

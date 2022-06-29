@@ -3,6 +3,40 @@ export const getAsyncRoutes = (data: { name: string }) => {
     code: 0,
     data: [
       {
+        path: '/template',
+        name: 'template',
+        meta: {
+          type: 0,
+          showLink: true,
+          i18n: true,
+          title: 'menus.template',
+        },
+        children: [
+          {
+            path: '/template/table/index',
+            name: 'template/table',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: true,
+              title: 'menus.table',
+              keepAlive: true,
+            },
+          },
+          {
+            path: '/template/swiper/index',
+            name: 'template/swiper',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: true,
+              title: 'menus.swiper',
+              keepAlive: true,
+            },
+          },
+        ],
+      },
+      {
         path: '/system',
         name: 'system',
         meta: {

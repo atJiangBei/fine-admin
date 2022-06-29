@@ -11,7 +11,7 @@
   display: flex;
   height: 32px;
   width: auto;
-  min-width: 200px;
+  min-width: 180px;
   align-items: flex-end;
   padding-left: 10px;
   cursor: pointer;
