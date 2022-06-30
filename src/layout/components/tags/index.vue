@@ -12,20 +12,26 @@ const allTags = computed(() => {
   return [...staticTagList, ...tagList];
 });
 const toHome = (path: string) => {
+  useTagsStoreHook().setActivedTagPath(path);
   router.push(path);
 };
 const onClose = (tag: any, index: number, isCurrent: boolean) => {
   let nextPath = '';
+  let nextRoute = null;
   if (isCurrent) {
     if (index === 0) {
-      nextPath = staticTagList[staticTagList.length - 1].path;
+      nextRoute = staticTagList[staticTagList.length - 1];
+      nextPath = nextRoute.path;
     } else {
-      nextPath = tagList[index - 1].path;
+      nextRoute = tagList[index - 1];
+      nextPath = nextRoute.path;
     }
   }
+
   useTagsStoreHook().deleteTag(index, tag, nextPath);
 };
 const route = useRoute();
+
 const tagContent = ref();
 
 const tagMinX = ref(0);
@@ -38,15 +44,14 @@ const setTagMinX = () => {
 onMounted(() => {
   setTagMinX();
 });
-watch(
-  () => [tagList, route.path],
-  () => {
-    nextTick(() => {
-      setTagMinX();
-      setTransform();
-    });
-  }
-);
+const reset = () => {
+  nextTick(() => {
+    setTagMinX();
+    setTransform();
+  });
+};
+watch(() => route.path, reset);
+watch(() => tagList.length, reset);
 
 const toPrev = () => {
   const currentIndex = getCurrentIndex();
@@ -135,7 +140,7 @@ function getInCenterPositionX(currentTagNode: HTMLSpanElement): number {
         <tag
           v-for="tag in staticTagList"
           :key="tag.name"
-          :actived="route.path === tag.path"
+          :actived="useTagsStoreHook().activedTagPath === tag.path"
           @click="toHome(tag.path)"
         >
           {{ $t(tag.meta.title) }}
@@ -143,7 +148,7 @@ function getInCenterPositionX(currentTagNode: HTMLSpanElement): number {
         <tag
           closable
           :key="tag.name"
-          :actived="route.path === tag.path"
+          :actived="useTagsStoreHook().activedTagPath === tag.path"
           v-for="(tag, index) in tagList"
           @click="toHome(tag.path)"
           @close="onClose(tag, index, route.path === tag.path)"

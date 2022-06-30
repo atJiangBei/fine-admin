@@ -11,9 +11,14 @@ export const useTagsStore = defineStore({
     staticTagList: [...homes],
     tagList: [],
     cachePageList: [],
+    activedTagPath: homes[0].path,
   }),
   actions: {
+    setActivedTagPath(path: string) {
+      this.activedTagPath = path;
+    },
     changeTag(route: toRouteType) {
+      this.setActivedTagPath(route.path);
       const index = [...this.staticTagList, ...this.tagList].findIndex(
         (tag: any) => tag.path === route.path
       );
@@ -24,9 +29,10 @@ export const useTagsStore = defineStore({
         }
       }
     },
-    deleteTag(index: number, route: RouteRecordRaw, nextPath?: string) {
+    deleteTag(index: number, route: RouteRecordRaw, nextPath: string) {
       this.tagList.splice(index, 1);
       if (nextPath) {
+        this.setActivedTagPath(nextPath);
         router.push(nextPath);
       }
       const cacheIndex = this.cachePageList.findIndex(

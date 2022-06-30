@@ -48,7 +48,6 @@ export default defineComponent({
     onMounted(() => {
       const echartsMap = Echarts.init(map.value);
       echartsMap.setOption(option);
-      console.log(Echarts);
     });
     return { map };
   },

@@ -17,10 +17,8 @@ const activeIndex = computed(() => {
 const routeList = usePermissionStoreHook().wholeMenus;
 
 const onSelect = (path: string) => {
-  //console.log(path);
   const route = findRouteByPath(routeList, path);
   useTagsStoreHook().changeTag(route);
-  router.push(path);
 };
 </script>
 <template>
@@ -32,7 +30,7 @@ const onSelect = (path: string) => {
       background-color="#001529"
       text-color="#fff"
       active-text-color="#31c29b"
-      :router="false"
+      :router="true"
       @select="onSelect"
     >
       <sidebar-item
