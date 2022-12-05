@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfine_admin"]=self["webpackChunkfine_admin"]||[]).push([[404],{4404:function(n,e,t){t.r(e),t.d(e,{default:function(){return o}});var u=t(3396);const r=(0,u.Uk)("404");function i(n,e){const t=(0,u.up)("router-link");return(0,u.wg)(),(0,u.iD)("div",null,[(0,u.Wm)(t,{to:"/404"},{default:(0,u.w5)((()=>[r])),_:1})])}var a=t(89);const c={},f=(0,a.Z)(c,[["render",i]]);var o=f}}]);
+//# sourceMappingURL=404.d3a2f710.js.map
