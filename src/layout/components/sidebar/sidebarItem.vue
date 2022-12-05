@@ -2,16 +2,24 @@
 import {
   ref,
   PropType,
-  nextTick,
   computed,
   CSSProperties,
   getCurrentInstance,
   defineProps,
+  h,
+  defineComponent,
+  Component,
 } from 'vue';
 
 import router from '@/router';
 import { childrenType } from '../../types';
+import { useLayoutStoreHook } from '@/store/modules/layout';
 
+const layoutStore = useLayoutStoreHook();
+
+const showMenuLabel = computed(() => {
+  return layoutStore.layout !== 'inline' && layoutStore.opened;
+});
 //const instance = getCurrentInstance().appContext.app.config.globalProperties;
 const props = defineProps({
   item: {
@@ -73,49 +81,50 @@ function resolvePath(routePath: string) {
   } else {
     let newPath = '';
     if (!props.basePath) {
-      //console.log(1, routePath, props.basePath);
       newPath = routePath;
     } else if (routePath.indexOf(props.basePath) === 0) {
-      //console.log(2, routePath, props.basePath);
       newPath = routePath;
     } else {
-      //console.log(3, routePath, props.basePath);
       newPath = props.basePath + routePath;
     }
-    //console.log(newPath);
     return newPath;
-    //return props.basePath + routePath;
   }
 }
 </script>
 
 <template>
-  <template
+  <a-menu-item
+    :key="resolvePath(onlyOneChild!.path)"
+    :style="getNoDropdownStyle"
     v-if="
       hasOneShowingChild(props.item.children, props.item) &&
-      (!onlyOneChild.children || onlyOneChild.noShowingChildren)
+      (!onlyOneChild!.children || onlyOneChild!.noShowingChildren)
     "
   >
-    <el-menu-item
-      :index="resolvePath(onlyOneChild.path)"
-      :style="getNoDropdownStyle"
+    <template
+      v-if="onlyOneChild && onlyOneChild.meta && onlyOneChild.meta.icon"
     >
-      <template #title>
-        <div :style="getDivStyle">
-          <span>{{ onlyOneChild.meta && $t(onlyOneChild.meta.title) }}</span>
-        </div>
-      </template>
-    </el-menu-item>
-  </template>
+      <svg-icon :icon="onlyOneChild!.meta!.icon" class="anticon" />
+    </template>
 
-  <el-sub-menu
+    <span>
+      {{ onlyOneChild!.meta && $t(onlyOneChild!.meta.title || 'xxx') }}
+    </span>
+  </a-menu-item>
+
+  <a-sub-menu
     v-else
     ref="subMenu"
-    :index="resolvePath(props.item.path)"
+    :key="resolvePath(props.item.path)"
     popper-append-to-body
   >
+    <template #icon v-if="props.item.meta && props.item.meta.icon">
+      <svg-icon :icon="props.item.meta!.icon!" class="avticon" />
+    </template>
     <template #title>
-      <span>{{ props.item.meta && $t(props.item.meta.title) }}</span>
+      <span>
+        {{ props.item.meta && $t(props.item.meta.title || 'xxx') }}
+      </span>
     </template>
     <sidebar-item
       v-for="child in props.item.children"
@@ -125,5 +134,5 @@ function resolvePath(routePath: string) {
       :base-path="resolvePath(child.path)"
       class="nest-menu"
     />
-  </el-sub-menu>
+  </a-sub-menu>
 </template>

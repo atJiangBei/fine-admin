@@ -1,55 +1,53 @@
 <template>
   <div>
-    <div ref="map" style="height: 540px"></div>
+    <a-row>
+      <a-col :span="12">
+        <div ref="pie1" style="height: 400px"></div>
+      </a-col>
+      <a-col :span="12">
+        <div ref="pie2" style="height: 400px"></div>
+      </a-col>
+    </a-row>
+    <a-row>
+      <a-col :span="24">
+        <div ref="map" style="height: 540px"></div>
+      </a-col>
+    </a-row>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import {
+  usePermissionStore,
+  usePermissionStoreHook,
+} from '@/store/modules/permission';
 import * as Echarts from 'echarts';
-const option = {
-  legend: {
-    top: 'bottom',
-  },
-  toolbox: {
-    show: true,
-    feature: {
-      mark: { show: true },
-      dataView: { show: true, readOnly: false },
-      restore: { show: true },
-      saveAsImage: { show: true },
-    },
-  },
-  series: [
-    {
-      name: 'Nightingale Chart',
-      type: 'pie',
-      radius: [50, 250],
-      center: ['50%', '50%'],
-      roseType: 'area',
-      itemStyle: {
-        borderRadius: 8,
-      },
-      data: [
-        { value: 40, name: 'rose 1' },
-        { value: 38, name: 'rose 2' },
-        { value: 32, name: 'rose 3' },
-        { value: 30, name: 'rose 4' },
-        { value: 28, name: 'rose 5' },
-        { value: 26, name: 'rose 6' },
-        { value: 22, name: 'rose 7' },
-        { value: 18, name: 'rose 8' },
-      ],
-    },
-  ],
+import { directOption, pieOption1, pieOption2 } from './useData';
+
+const initEcharts = (dom: HTMLElement, option: any) => {
+  const echartsMap = Echarts.init(dom);
+  echartsMap.setOption(option);
+  return () => echartsMap.resize();
 };
 export default defineComponent({
   setup() {
     const map = ref();
+    const pie1 = ref();
+    const pie2 = ref();
+    const maps: any = [];
     onMounted(() => {
-      const echartsMap = Echarts.init(map.value);
-      echartsMap.setOption(option);
+      maps.push(initEcharts(pie1.value, pieOption1));
+      maps.push(initEcharts(pie2.value, pieOption2));
+      maps.push(initEcharts(map.value, directOption));
+      window.addEventListener('resize', resize);
     });
-    return { map };
+    const resize = () => {
+      maps.forEach((fn: any) => fn());
+    };
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', resize);
+    });
+    return { map, pie1, pie2 };
   },
 });
 </script>

@@ -28,13 +28,14 @@ const { isFullscreen, toggle } = useFullscreen();
   align-items: center;
   justify-content: space-around;
   cursor: pointer;
+  color: var(--fine-admin-header-color);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--fine-admin-header-bg-hover);
   }
   .svg-icon.toggle-icon {
     width: 24px;
     height: 24px;
-    fill: var(--admin-basic-color);
+    //fill: #666;
   }
 }
 </style>

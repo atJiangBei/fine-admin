@@ -10,6 +10,7 @@ export const getAsyncRoutes = (data: { name: string }) => {
           showLink: true,
           i18n: true,
           title: 'menus.template',
+          icon: 'modular',
         },
         children: [
           {
@@ -44,6 +45,7 @@ export const getAsyncRoutes = (data: { name: string }) => {
           showLink: true,
           i18n: true,
           title: 'menus.systemManagement',
+          icon: 'system',
         },
         children: [
           {
@@ -85,6 +87,7 @@ export const getAsyncRoutes = (data: { name: string }) => {
           showLink: true,
           i18n: true,
           type: 0,
+          icon: 'menu',
         },
         children: [
           {

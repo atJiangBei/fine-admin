@@ -1,11 +1,22 @@
 <script setup lang="ts">
-import Tags from './tags/index.vue';
+import { computed } from 'vue';
 import { useTagsStoreHook } from '@/store/modules/tags';
+import { useLayoutStoreHook } from '@/store/modules/layout';
 const cachePageList = useTagsStoreHook().cachePageList;
+const layoutStore = useLayoutStoreHook();
+
+const styleC = computed(() => {
+  const { layout, opened } = layoutStore;
+  if (layout === 'horizontal') {
+    return {};
+  }
+  return {
+    'padding-left': opened ? '210px' : '54px',
+  };
+});
 </script>
 <template>
-  <section class="app-main">
-    <Tags />
+  <section class="app-main" :style="styleC">
     <div class="app-main-content">
       <router-view>
         <template #default="{ Component, route }">
@@ -23,14 +34,16 @@ const cachePageList = useTagsStoreHook().cachePageList;
     </div>
   </section>
 </template>
-<style lang="less">
+<style lang="less" scoped>
 .app-main {
   box-sizing: border-box;
   width: 100%;
   height: 100vh;
   position: relative;
   overflow-x: hidden;
-  padding-top: 48px;
+  padding-top: 81px;
+  transition: all 0.3s;
+  background-color: var(--fine-admin-bg);
 }
 .app-main-content {
   padding: 8px;

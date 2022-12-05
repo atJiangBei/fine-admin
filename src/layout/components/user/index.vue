@@ -28,17 +28,18 @@ const logout = () => {
   height: 48px;
   max-width: 120px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  color: var(--admin-basic-color);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  color: var(--fine-admin-header-color);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--fine-admin-header-bg-hover);
   }
   img {
     height: 28px;
     margin-right: 5px;
+    border-radius: 50%;
   }
 }
 </style>

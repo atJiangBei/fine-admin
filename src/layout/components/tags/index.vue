@@ -167,7 +167,6 @@ function getInCenterPositionX(currentTagNode: HTMLSpanElement): number {
   position: relative;
   padding: 0 32px;
   text-align: left;
-  background-color: #fff;
   border-bottom: 1px solid #d8dce5;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%), 0 0 3px 0 rgb(0 0 0 / 4%);
   .nav-tag {
@@ -195,9 +194,14 @@ function getInCenterPositionX(currentTagNode: HTMLSpanElement): number {
     align-items: center;
     cursor: pointer;
     user-select: none;
-    background-color: #fff;
+    background-color: var(--fine-admin-tag-control-bg);
+    color: var(--fine-admin-tag-control-color);
+    opacity: 0.5;
     &:hover {
-      background-color: #f2f2f2;
+      opacity: 0.7;
+    }
+    &:active {
+      opacity: 1;
     }
   }
   .nav-tag-to-left {

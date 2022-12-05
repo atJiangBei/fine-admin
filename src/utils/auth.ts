@@ -13,7 +13,7 @@ export function setToken(token: string) {
   return temporary.set(TokenKey, token);
 }
 
-export function removeToken(): void {
+export function removeToken() {
   return temporary.remove(TokenKey);
 }
 

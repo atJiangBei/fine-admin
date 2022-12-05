@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { login } from '@/api/user';
 import { setToken } from '@/utils/auth';
 import router from '@/router';
@@ -24,19 +24,19 @@ const onReset = () => {
 };
 const onLogin = () => {
   console.log(formModel);
-  loginFormRef.value.validate((valid, fields) => {
-    if (valid) {
-      login().then((res) => {
+  loginFormRef.value.validate().then(() => {
+    login()
+      .then((res) => {
         console.log(res);
         const {
           data: { token },
-        } = res;
+        } = res as { data: { token: string } };
         setToken(token);
         router.push('/');
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    } else {
-      console.log('error submit!', fields);
-    }
   });
 };
 </script>
@@ -45,25 +45,25 @@ const onLogin = () => {
   <div class="login-container">
     <div class="login-bg"></div>
     <div class="login-content">
-      <el-form
+      <a-form
         :rules="rules"
         :model="formModel"
-        label-width="80px"
+        :labelCol="{ span: 8 }"
         ref="loginFormRef"
       >
-        <el-form-item prop="username" label="用户名">
-          <el-input v-model="formModel.username"></el-input>
-        </el-form-item>
-        <el-form-item prop="password" label="密码">
-          <el-input type="password" v-model="formModel.password"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button size="small" @click="onReset">重置</el-button>
-          <el-button size="small" type="primary" @click="onLogin"
-            >登录</el-button
-          >
-        </el-form-item>
-      </el-form>
+        <a-form-item name="username" label="用户名">
+          <a-input v-model:value="formModel.username"></a-input>
+        </a-form-item>
+        <a-form-item name="password" label="密码">
+          <a-input type="password" v-model:value="formModel.password"></a-input>
+        </a-form-item>
+        <a-form-item>
+          <div class="flex flex-jc-end">
+            <a-button @click="onReset">重置</a-button>
+            <a-button type="primary" @click="onLogin"> 登录 </a-button>
+          </div>
+        </a-form-item>
+      </a-form>
     </div>
   </div>
 </template>
@@ -87,13 +87,16 @@ const onLogin = () => {
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 420px;
-  height: 220px;
+  width: 640px;
+  height: 320px;
   max-width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 255, 255, 0.7);
   padding: 30px 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

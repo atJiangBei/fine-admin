@@ -8,6 +8,7 @@ export default [
     name: 'home',
     meta: {
       title: 'menus.home',
+      icon: 'home',
     },
     component: () =>
       import(/* webpackChunkName: "about" */ '@/views/home/index.vue'),

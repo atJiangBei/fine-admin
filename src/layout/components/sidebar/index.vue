@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { RouteRecordRaw } from 'vue-router';
 import sidebarItem from './sidebarItem.vue';
 import { usePermissionStoreHook } from '@/store/modules/permission';
@@ -8,29 +8,54 @@ import { findRouteByPath } from '@/router/utils';
 import { useRoute } from 'vue-router';
 import router from '@/router';
 
+import { useLayoutStoreHook } from '@/store/modules/layout';
+const layoutStore = useLayoutStoreHook();
+
 const route = useRoute();
 
 const activeIndex = computed(() => {
   return route.path;
 });
 
+watch(activeIndex, (path) => {
+  console.log(path);
+  selectedKeys.value = [path];
+});
+
 const routeList = usePermissionStoreHook().wholeMenus;
 
-const onSelect = (path: string) => {
+const onSelect = (item: any) => {
+  const path = item.key;
   const route = findRouteByPath(routeList, path);
   useTagsStoreHook().changeTag(route);
+  router.push(path);
 };
+
+const selectedKeys = ref([route.path]);
+const openKeys = ref([]);
+
+const mode = computed(() => {
+  if (layoutStore.layout === 'vertical') {
+    return 'inline';
+  }
+  return layoutStore.layout;
+});
+watch(
+  () => openKeys.value,
+  (nvl) => {
+    console.log(nvl);
+  }
+);
 </script>
 <template>
   <div class="sidebar-container">
-    <el-menu
+    <a-menu
       :ellipsis="false"
-      :default-active="activeIndex"
-      mode="horizontal"
-      background-color="#001529"
-      text-color="#fff"
-      active-text-color="#31c29b"
-      :router="true"
+      v-model:selected-keys="selectedKeys"
+      v-model:open-keys="openKeys"
+      :subMenuCloseDelay="0.2"
+      :mode="mode"
+      :inline-collapsed="!layoutStore.opened"
       @select="onSelect"
     >
       <sidebar-item
@@ -39,7 +64,7 @@ const onSelect = (path: string) => {
         :item="route"
         :base-path="route.path"
       />
-    </el-menu>
+    </a-menu>
   </div>
 </template>
 <style lang="less">
@@ -47,6 +72,9 @@ const onSelect = (path: string) => {
   flex: 1;
   .el-menu--horizontal {
     border-bottom: 0;
+  }
+  .ant-menu.ant-menu-inline-collapsed {
+    width: 54px;
   }
 }
 </style>

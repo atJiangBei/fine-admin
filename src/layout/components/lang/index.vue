@@ -46,16 +46,6 @@ function translation(lang: 'zh' | 'en') {
 </template>
 <style lang="less">
 .header-lang-translation {
-  // .el-dropdown-menu__item {
-  //   &.active {
-  //     background-color: rgba(49, 194, 155, 0.3);
-  //     color: var(--admin-basic-color);
-  //   }
-
-  //   &:hover {
-  //     color: var(--admin-basic-color);
-  //   }
-  // }
   .el-icon {
     margin-left: 5px;
     height: 18px;
@@ -64,16 +54,17 @@ function translation(lang: 'zh' | 'en') {
 }
 .toggle-lang {
   height: 48px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: var(--fine-admin-header-color);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--fine-admin-header-bg-hover);
   }
   .svg-icon.toggle-icon {
-    width: 24px;
-    height: 24px;
-    fill: var(--admin-basic-color);
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

@@ -1,105 +1,66 @@
 <template>
-  <div class="table-container">
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column
-        v-for="column in tableColumns"
-        :prop="column.prop"
-        :label="column.label"
-      >
-      </el-table-column>
-    </el-table>
-  </div>
+  <a-table :columns="columns" :data-source="data" bordered>
+    <template #bodyCell="{ column, text }">
+      <template v-if="column.dataIndex === 'name'">
+        <a>{{ text }}</a>
+      </template>
+    </template>
+    <template #title>Header</template>
+    <template #footer>Footer</template>
+  </a-table>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-<script lang="ts" setup>
-const tableColumns = [
+const columns = [
   {
-    prop: 'date',
-    label: 'Date',
+    title: 'Name',
+    dataIndex: 'name',
   },
   {
-    prop: 'name',
-    label: 'Name',
+    title: 'Cash Assets',
+    className: 'column-money',
+    dataIndex: 'money',
   },
   {
-    prop: 'state',
-    label: 'State',
-  },
-  {
-    prop: 'city',
-    label: 'City',
-  },
-  {
-    prop: 'address',
-    label: 'Address',
-  },
-  {
-    prop: 'zip',
-    label: 'Zip',
+    title: 'Address',
+    dataIndex: 'address',
   },
 ];
-const tableData = [
+
+const data = [
   {
-    date: '2016-05-03',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
+    key: '1',
+    name: 'John Brown',
+    money: '￥300,000.00',
+    address: 'New York No. 1 Lake Park',
   },
   {
-    date: '2016-05-02',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
+    key: '2',
+    name: 'Jim Green',
+    money: '￥1,256,000.00',
+    address: 'London No. 1 Lake Park',
   },
   {
-    date: '2016-05-04',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-  },
-  {
-    date: '2016-05-08',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-  },
-  {
-    date: '2016-05-06',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-  },
-  {
-    date: '2016-05-07',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
+    key: '3',
+    name: 'Joe Black',
+    money: '￥120,000.00',
+    address: 'Sidney No. 1 Lake Park',
   },
 ];
+
+export default defineComponent({
+  setup() {
+    return {
+      data,
+      columns,
+    };
+  },
+});
 </script>
-<style lang="less">
-.table-container {
-  background-color: #fff;
-  padding: 10px;
+<style>
+th.column-money,
+td.column-money {
+  text-align: right !important;
 }
 </style>
