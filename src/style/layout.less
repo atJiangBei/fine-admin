@@ -4,8 +4,8 @@ html[theme='light'] {
   --fine-admin-bg: #ffffff;
 }
 html[theme='dark'] {
-  --fine-admin-bg: #202020;
   body[themestyle] {
+    --fine-admin-bg: #202020;
     --fine-admin-basic-color: var(--fine-admin-bg);
     --fine-admin-highlighted-color: #1890ff;
     --fine-admin-aside-bg: #141414;
@@ -43,6 +43,7 @@ body[themestyle='primary'] {
   --fine-admin-aside-bg: @fd-primary;
   --fine-admin-aside-sub-bg: #000c17;
   --fine-admin-aside-color: #ffffffa6;
+  --fine-admin-aside-selected-color: #ffffff;
   --fine-admin-aside-hover-color: #ffffff;
   --fine-admin-header-bg-hover: rgba(205, 202, 202, 0.2);
   /*tag*/
@@ -76,7 +77,8 @@ body[themestyle='white'] {
   --fine-admin-aside-bg: @fd-white;
   --fine-admin-aside-sub-bg: #fafafa;
   --fine-admin-aside-color: #888888;
-  --fine-admin-aside-hover-color: #222222;
+  --fine-admin-aside-selected-color: #081642;
+  --fine-admin-aside-hover-color: #333333;
   --fine-admin-header-bg-hover: #e6f7ff;
   /*tag*/
   --fine-admin-tag-color: #999999;
@@ -103,8 +105,43 @@ body[themestyle='white'] {
     --fine-admin-header-bg: @fd-white;
   }
 }
+body[themestyle='azure'] {
+  --fine-admin-bg: #f3f4fa;
+  --fine-admin-basic-color: @fd-azure;
+  --fine-admin-highlighted-color: @fd-azure;
+  --fine-admin-aside-bg: #ffffff;
+  --fine-admin-aside-sub-bg: #fafafa;
+  --fine-admin-aside-color: @fd-azure;
+  --fine-admin-aside-selected-color: #ffffff;
+  --fine-admin-aside-hover-color: @fd-azure;
+  --fine-admin-header-bg-hover: rgba(84, 112, 198, 0.2);
+  /*tag*/
+  --fine-admin-tag-color: #999999;
+  --fine-admin-tag-border-color: #d9d9d9;
+  --fine-admin-tag-bg: #ffffff;
+  --fine-admin-tag-selected-color: #ffffff;
+  --fine-admin-tag-selected-bg: @fd-azure;
+  --fine-admin-tag-closable-hover-bg: var(--fine-admin-tag-selected-bg);
+  --fine-admin-tag-closable-hover-color: #ffffff;
+  --fine-admin-selected-tag-closable-hover-bg: #ffffff;
+  --fine-admin-selected-tag-closable-hover-color: var(
+    --fine-admin-tag-selected-bg
+  );
+  --fine-admin-tag-control-color: rgba(0, 0, 0, 0.4);
+  --fine-admin-tag-control-bg: #f0f0f0;
+  &[layout='vertical'] {
+    --fine-admin-name-color: #6e7079;
+    --fine-admin-header-color: #6e7079;
+    --fine-admin-header-bg: #ffffff;
+  }
+  &[layout='horizontal'] {
+    --fine-admin-name-color: #6e7079;
+    --fine-admin-header-color: #6e7079;
+    --fine-admin-header-bg: #ffffff;
+  }
+}
 
-body {
+body[themestyle] {
   .layout-aside {
     background-color: var(--fine-admin-aside-bg);
   }
@@ -136,10 +173,97 @@ body {
     color: var(--fine-admin-aside-color);
   }
   .ant-menu-submenu-selected {
+    color: var(--fine-admin-aside-color);
+    &:not(.ant-menu-submenu-horizontal) {
+      .ant-menu-submenu-title {
+        color: var(--fine-admin-aside-selected-color);
+      }
+    }
+    &.ant-menu-submenu-inline {
+      .ant-menu-submenu-title {
+        color: var(--fine-admin-aside-color);
+      }
+    }
+
+    &.ant-menu-submenu-vertical {
+      background-color: var(--fine-admin-highlighted-color);
+    }
+  }
+
+  .ant-menu-item-selected {
+    color: var(--fine-admin-aside-selected-color);
+  }
+
+  .ant-menu-light .ant-menu-item.ant-menu-item-selected {
+    color: var(--fine-admin-aside-selected-color);
+  }
+  .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+  .ant-menu-light .ant-menu-submenu-active {
+    color: var(--fine-admin-aside-color);
+  }
+  .ant-menu-light .ant-menu-item:not(.ant-menu-item-selected):hover,
+  .ant-menu-light .ant-menu-item-active,
+  .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
     color: var(--fine-admin-aside-hover-color);
   }
-  .ant-menu-item-selected {
-    color: var(--fine-admin-aside-hover-color);
+  .ant-menu-light:not(.ant-menu-horizontal) {
+    .ant-menu-item:not(.ant-menu-item-selected):hover,
+    .ant-menu-item-active,
+    .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+      &:active {
+        color: var(--fine-admin-aside-selected-color);
+        background-color: var(--fine-admin-highlighted-color);
+      }
+    }
+  }
+  .ant-menu-light .ant-menu-submenu-active {
+    &:hover {
+      color: var(--fine-admin-aside-color);
+    }
+  }
+  .ant-menu-light {
+    .ant-menu-submenu.ant-menu-submenu-selected:not(.ant-menu-submenu-vertical) {
+      .ant-menu-submenu-title {
+        &:hover {
+          color: var(--fine-admin-aside-hover-color);
+        }
+        &:active {
+          color: var(--fine-admin-aside-color);
+        }
+      }
+    }
+    .ant-menu-submenu:not(.ant-menu-submenu-selected) {
+      .ant-menu-submenu-title {
+        &:hover {
+          color: var(--fine-admin-aside-color);
+        }
+        &:active {
+          color: var(--fine-admin-aside-selected-color);
+        }
+      }
+    }
+    .ant-menu-submenu.ant-menu-submenu-horizontal:not(.ant-menu-submenu-selected) {
+      .ant-menu-submenu-title {
+        &:hover {
+          color: var(--fine-admin-aside-color);
+        }
+        &:active {
+          color: var(--fine-admin-aside-color);
+        }
+      }
+    }
+    &:not(.ant-menu-horizontal) {
+      .ant-menu-submenu-title {
+        &:active {
+          color: var(--fine-admin-aside-selected-color);
+          background-color: var(--fine-admin-highlighted-color);
+        }
+      }
+    }
+  }
+  /*弹出*/
+  .ant-menu-submenu-popup > .ant-menu {
+    background-color: var(--fine-admin-aside-bg);
   }
   /*右侧展开icon*/
   .ant-menu-submenu-expand-icon,
@@ -153,18 +277,32 @@ body {
   .ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
     color: var(--fine-admin-aside-hover-color);
   }
-  .ant-menu-light .ant-menu-item:hover,
-  .ant-menu-light .ant-menu-item-active,
-  .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
-  .ant-menu-light .ant-menu-submenu-active,
-  .ant-menu-light .ant-menu-submenu-title:hover {
-    color: var(--fine-admin-aside-hover-color);
-    &:active {
-      background-color: var(--fine-admin-aside-bg);
-    }
+  /**/
+  .ant-menu-vertical .ant-menu-item::after,
+  .ant-menu-vertical-left .ant-menu-item::after,
+  .ant-menu-vertical-right .ant-menu-item::after,
+  .ant-menu-inline .ant-menu-item::after {
+    border-right-color: #2244a9;
   }
-  /*弹出*/
-  .ant-menu-submenu-popup > .ant-menu {
-    background-color: var(--fine-admin-aside-bg);
+  /**/
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
+    color: var(--fine-admin-aside-color);
+  }
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
+    border-bottom-color: var(--fine-admin-aside-color);
   }
 }

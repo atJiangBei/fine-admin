@@ -13,7 +13,7 @@ export function getLayoutInfo() {
     (JSON.parse(eternal.get(layoutKey) as string) as LayoutInfoType) || {
       layout: 'vertical',
       theme: 'light',
-      themeStyle: 'primary',
+      themeStyle: 'azure',
     }
   );
 }
