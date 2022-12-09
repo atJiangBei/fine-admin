@@ -181,8 +181,13 @@ body[themestyle] {
     color: var(--fine-admin-aside-selected-color);
   }
 
-  .ant-menu-light .ant-menu-item.ant-menu-item-selected {
-    color: var(--fine-admin-aside-selected-color);
+  .ant-menu-light {
+    &:not(.ant-menu-horizontal) .ant-menu-item.ant-menu-item-selected {
+      color: var(--fine-admin-aside-selected-color);
+    }
+    &.ant-menu-horizontal .ant-menu-item.ant-menu-item-selected {
+      color: var(--fine-admin-aside-color);
+    }
   }
   .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
   .ant-menu-light .ant-menu-submenu-active {
@@ -203,11 +208,12 @@ body[themestyle] {
       }
     }
   }
-  .ant-menu-light .ant-menu-submenu-active {
-    &:hover {
-      color: var(--fine-admin-aside-color);
-    }
-  }
+  // .ant-menu-light .ant-menu-submenu-active {
+  //   color: var(--fine-admin-aside-color);
+  //   &:hover {
+  //     color: var(--fine-admin-aside-hover-color);
+  //   }
+  // }
   /*sub-menu-title*/
   .ant-menu-light {
     .ant-menu-submenu.ant-menu-submenu-selected {
@@ -219,17 +225,22 @@ body[themestyle] {
         background-color: var(--fine-admin-highlighted-color);
       }
     }
-    .ant-menu-submenu.ant-menu-submenu-selected:not(.ant-menu-submenu-vertical) {
-      .ant-menu-submenu-title {
+
+    .ant-menu-submenu.ant-menu-submenu-selected {
+      &:not(.ant-menu-submenu-vertical) .ant-menu-submenu-title {
         &:hover {
           color: var(--fine-admin-aside-hover-color);
         }
+      }
+      &:not(.ant-menu-submenu-vertical):not(.ant-menu-submenu-horizontal)
+        .ant-menu-submenu-title {
         &:active {
           color: var(--fine-admin-aside-selected-color);
           background-color: var(--fine-admin-highlighted-color);
         }
       }
     }
+
     .ant-menu-submenu:not(.ant-menu-submenu-selected):not(.ant-menu-submenu-horizontal) {
       .ant-menu-submenu-title {
         &:hover {
@@ -244,7 +255,7 @@ body[themestyle] {
     .ant-menu-submenu.ant-menu-submenu-horizontal:not(.ant-menu-submenu-selected) {
       .ant-menu-submenu-title {
         &:hover {
-          color: var(--fine-admin-aside-color);
+          color: var(--fine-admin-aside-hover-color);
         }
         &:active {
           color: var(--fine-admin-aside-color);
