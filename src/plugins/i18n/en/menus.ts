@@ -20,4 +20,8 @@ export default {
   permissionRole: 'Role Permission',
   menusManagement: 'Menus Management',
   templateManagement: 'Template Management',
+  functional: 'Functional',
+  download: 'Download',
+  print: 'Print',
+  debounceAndThrottle: 'debounce & throttle',
 };

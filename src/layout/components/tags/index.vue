@@ -153,7 +153,7 @@ function getInCenterPositionX(currentTagNode: HTMLSpanElement): number {
           @click="toHome(tag.path)"
           @close="onClose(tag, index, route.path === tag.path)"
         >
-          {{ $t(tag.meta.title) }}
+          {{ tag.meta.i18n ? $t(tag.meta.title) : tag.meta.title }}
         </tag>
       </div>
     </div>

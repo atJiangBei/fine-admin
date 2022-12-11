@@ -85,7 +85,8 @@ function resolvePath(routePath: string) {
     } else if (routePath.indexOf(props.basePath) === 0) {
       newPath = routePath;
     } else {
-      newPath = props.basePath + routePath;
+      //newPath = props.basePath + routePath;
+      newPath = routePath;
     }
     return newPath;
   }
@@ -108,7 +109,7 @@ function resolvePath(routePath: string) {
     </template>
 
     <span>
-      {{ onlyOneChild!.meta && $t(onlyOneChild!.meta.title || 'xxx') }}
+      {{ onlyOneChild!.meta && (onlyOneChild!.meta.i18n? $t(onlyOneChild!.meta.title || 'xxx') : onlyOneChild!.meta?.title) }}
     </span>
   </a-menu-item>
 
@@ -123,7 +124,12 @@ function resolvePath(routePath: string) {
     </template>
     <template #title>
       <span>
-        {{ props.item.meta && $t(props.item.meta.title || 'xxx') }}
+        {{
+          props.item.meta &&
+          (props.item.meta.i18n
+            ? $t(props.item.meta.title || 'xxx')
+            : props.item.meta?.title)
+        }}
       </span>
     </template>
     <sidebar-item

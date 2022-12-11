@@ -38,6 +38,60 @@ export const getAsyncRoutes = (data: { name: string }) => {
         ],
       },
       {
+        path: '/functional',
+        name: 'functional',
+        meta: {
+          type: 0,
+          showLink: true,
+          i18n: true,
+          title: 'menus.functional',
+          icon: 'functional',
+        },
+        children: [
+          {
+            path: '/functional/download',
+            name: 'functional-download',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: true,
+              title: 'menus.download',
+            },
+          },
+          {
+            path: '/functional/print',
+            name: 'functional-print',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: true,
+              title: 'menus.print',
+            },
+          },
+          {
+            path: '/functional/debounce-throttle',
+            name: 'functional-debounce-throttle',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: true,
+              title: 'menus.debounceAndThrottle',
+            },
+          },
+          {
+            path: '/system/role/index',
+            name: 'system-role',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: true,
+              title: 'menus.permissionRole',
+              keepAlive: true,
+            },
+          },
+        ],
+      },
+      {
         path: '/system',
         name: 'system',
         meta: {
@@ -167,6 +221,41 @@ export const getAsyncRoutes = (data: { name: string }) => {
           },
         ],
       },
+      // {
+      //   path: '/error',
+      //   name: 'template',
+      //   meta: {
+      //     type: 0,
+      //     showLink: true,
+      //     i18n: false,
+      //     title: 'error',
+      //     icon: 'error',
+      //   },
+      //   children: [
+      //     {
+      //       path: '/error/404',
+      //       name: 'error-404',
+      //       meta: {
+      //         type: 1,
+      //         showLink: true,
+      //         i18n: false,
+      //         title: '404',
+      //         keepAlive: false,
+      //       },
+      //     },
+      //     {
+      //       path: '/error/500',
+      //       name: 'error-500',
+      //       meta: {
+      //         type: 1,
+      //         showLink: true,
+      //         i18n: false,
+      //         title: '500',
+      //         keepAlive: false,
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   });
 };

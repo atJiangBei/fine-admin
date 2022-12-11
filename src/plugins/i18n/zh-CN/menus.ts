@@ -20,4 +20,8 @@ export default {
   permissionRole: '角色权限',
   menusManagement: '菜单管理',
   templateManagement: '模板管理',
+  functional: '功能',
+  download: '下载',
+  print: '打印',
+  debounceAndThrottle: '防抖节流',
 };

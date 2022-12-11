@@ -1,12 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="default-bg">
-    <a-result
-      status="404"
-      title="404"
-      sub-title="Sorry, you are not authorized to access this page."
-    >
+  <div>
+    <a-result status="500" title="500" sub-title="Sorry, the server is wrong.">
       <template #extra>
         <a-button type="primary">Back Home</a-button>
       </template>

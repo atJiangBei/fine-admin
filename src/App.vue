@@ -4,19 +4,8 @@
   </div>
 </template>
 <script setup lang="ts">
-//import { onMounted, ref } from 'vue';
-// import theme from './style/theme';
-// const themeContainer = ref();
-// console.log(theme);
-
-// const setThemeVar = (themeType: 'primary' = 'primary') => {
-//   Object.entries(theme[themeType]).forEach(([k, v]) => {
-//     themeContainer.value.style.setProperty(k, v);
-//   });
-// };
-// onMounted(() => {
-//   setThemeVar();
-// });
+// import { usePermissionStoreHook } from '@/store/modules/permission';
+// console.log(8, usePermissionStoreHook());
 </script>
 <style>
 #app {

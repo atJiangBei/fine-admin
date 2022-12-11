@@ -1,7 +1,7 @@
 <template>
   <div class="layout-aside" :style="styleC">
     <Logo />
-    <div>
+    <div class="layout-aside-bar-content">
       <sidebar />
     </div>
   </div>
@@ -30,5 +30,26 @@ const styleC = computed(() => {
   transition: all 0.3s;
   padding-top: 10px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%), 0 0 3px 0 rgb(0 0 0 / 4%);
+  display: flex;
+  flex-direction: column;
+  .layout-aside-bar-content {
+    flex: 1;
+    overflow: hidden;
+    &:hover {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 </style>
