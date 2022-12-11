@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfine_admin"]=self["webpackChunkfine_admin"]||[]).push([[730],{7730:function(n,e,r){r.r(e),r.d(e,{default:function(){return c}});var i=r(3396);function u(n,e){return(0,i.wg)(),(0,i.iD)("div",null,"print")}var t=r(89);const a={},f=(0,t.Z)(a,[["render",u]]);var c=f}}]);
+//# sourceMappingURL=730.a3010f5b.js.map

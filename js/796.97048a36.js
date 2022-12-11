@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfine_admin"]=self["webpackChunkfine_admin"]||[]).push([[796],{796:function(e,n,a){a.r(n),a.d(n,{default:function(){return o}});var t=a(3396),u=a(4870);const l=(0,t.aZ)({name:"system-role"});var r=(0,t.aZ)({...l,setup(e){const n=(0,u.iH)();return(e,a)=>{const u=(0,t.up)("el-input");return(0,t.wg)(),(0,t.j4)(u,{type:"textarea",modelValue:n.value,"onUpdate:modelValue":a[0]||(a[0]=e=>n.value=e)},null,8,["modelValue"])}}});const s=r;var o=s}}]);
+//# sourceMappingURL=796.97048a36.js.map
