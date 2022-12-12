@@ -1,8 +1,8 @@
-import Layout from '@/layout/index.vue';
+//import Layout from '@/layout/index.vue';
 export default {
   path: '/error',
   name: 'error',
-  component: Layout,
+  component: () => import('@/layout/index.vue'),
   meta: {
     i18n: false,
     title: 'error',

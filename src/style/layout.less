@@ -270,14 +270,20 @@ body[themestyle] {
   /*右侧展开icon*/
   .ant-menu-submenu-expand-icon,
   .ant-menu-submenu-arrow {
-    color: var(--fine-admin-aside-hover-color);
+    color: var(--fine-admin-aside-color);
   }
   /*右侧展开icon hover时*/
   .ant-menu-submenu:hover
     > .ant-menu-submenu-title
     > .ant-menu-submenu-expand-icon,
   .ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
-    color: var(--fine-admin-aside-hover-color);
+    color: var(--fine-admin-aside-color);
+  }
+  .ant-menu-submenu.ant-menu-submenu-active:active
+    > .ant-menu-submenu-title
+    > .ant-menu-submenu-expand-icon,
+  .ant-menu-submenu:active > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+    color: var(--fine-admin-aside-selected-color);
   }
   /**/
   .ant-menu-vertical .ant-menu-item::after,
