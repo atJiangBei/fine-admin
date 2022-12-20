@@ -79,6 +79,16 @@ export const getAsyncRoutes = (data: { name: string }) => {
             },
           },
           {
+            path: '/functional/drag/index',
+            name: 'functional-drag',
+            meta: {
+              type: 1,
+              showLink: true,
+              i18n: false,
+              title: '拖拽',
+            },
+          },
+          {
             path: '/system/role/index',
             name: 'system-role',
             meta: {
